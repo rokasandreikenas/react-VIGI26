@@ -1,0 +1,12 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.buttons {
+  margin-top: 24px;
+  background-color: lightgray;
+  padding: 24px;
+  display: flex;
+  justify-content: space-around;
+}
