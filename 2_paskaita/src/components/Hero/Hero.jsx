@@ -10,19 +10,25 @@ const Hero = ({ title, subtitle, color, className, children }) => {
       case "green":
         return "green-hero";
       default:
-        return "";
+        return "white-hero";
     }
   };
   // red-hero+center= red-herocenter
   // red-hero+ center= red-hero center
-  console.log(title);
+  // title = ""
+  // title = undefined
+
+  // su ifais
+  if (!title && !subtitle) {
+    return null;
+  }
+
   return (
     <div className={`${heroClassName()} ${className}`}>
-      {/* Jeigu title nera, nesukurk h1 */}
-      <h1>{title}</h1>
-      {/* Jeigu subtitle nera, nesukurk h2 */}
-      <h2>{subtitle}</h2>
-      <div>{children}</div>
+      {/* su ternary operatoriais ? : arba && */}
+      {title && <h1>{title}</h1>}
+      {subtitle && <h2>{subtitle}</h2>}
+      {children && <div>{children}</div>}
     </div>
   );
 };

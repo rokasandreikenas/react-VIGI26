@@ -1,11 +1,67 @@
+// index.js faile pasikeisti i <App />
 import "./App.css";
 import Button from "./components/Button/Button";
-import Card from "./components/Card/Card";
+import CustomButton from "./components/CustomButton/CustomButton";
 import Hero from "./components/Hero/Hero";
 
 const App = () => {
+  const names = ["Rokas", "Tomas", "Romas", "Gedas", "Greta", "Vilius"];
+
+  const fruits = [
+    "Apple",
+    "Banana",
+    "Orange",
+    "Pineapple",
+    "Strawberries",
+    "Berries",
+  ];
+
+  const colors = ["red", "green", "blue", "yellow"];
+
   return (
     <div className="container">
+      <CustomButton>Rokas</CustomButton>
+      <CustomButton>Tomas</CustomButton>
+      <CustomButton>Romas</CustomButton>
+
+      <hr />
+      {names.map((name) => (
+        <CustomButton>{name}</CustomButton>
+      ))}
+
+      {[1, 2, 3, 4, 5, 6].map((number) => (
+        <div>Numeris {number}</div>
+      ))}
+
+      <ul>
+        {fruits.map((fruit) => (
+          <li>{fruit}</li>
+        ))}
+      </ul>
+
+      <ol>
+        {colors.map((color) => (
+          <li>Spalva {color}</li>
+        ))}
+      </ol>
+
+      {colors.map((color) => (
+        <Hero
+          subtitle={`Mano megstamiausia spalva yra ${color}`}
+          color={color}
+        />
+      ))}
+
+      {colors.map((color) => (
+        <Button text={color} bgColor={color} />
+      ))}
+
+      {/* <div className="center">
+        <CustomButton>Paspausk mane!</CustomButton>
+        <br />
+        <br />
+        <CustomButton variant="contained">+100$</CustomButton>
+      </div>
       Rokas
       <div className="buttons">
         <Button text="Say hello" type="button" />
@@ -20,7 +76,6 @@ const App = () => {
         color="blue"
         className="center"
       >
-        {/* children */}
         <div>Rokas</div>
       </Hero>
       <Hero title="Info hero" subtitle="Info subtitle" color="red">
@@ -45,6 +100,7 @@ const App = () => {
         text="Lamborghini"
         className="car-card-mini"
       />
+      <Hero title="Nieko nesuprantu" color="red" /> */}
     </div>
   );
 };
