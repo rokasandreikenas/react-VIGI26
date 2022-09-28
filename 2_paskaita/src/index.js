@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 // import App from "./App";
-import Portfolio from "./pages/Portfolio";
+// import Portfolio from "./pages/Portfolio/Portfolio";
+import Products from "./pages/Products/Products";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Portfolio />
+    <Products />
   </React.StrictMode>
 );
 

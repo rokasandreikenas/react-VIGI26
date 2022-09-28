@@ -1,7 +1,7 @@
 // index.js faile pasikeisti i <Porftolio />
-import CustomButton from "../components/CustomButton/CustomButton";
-import Hero from "../components/Hero/Hero";
-import Card from "../components/Card/Card";
+import CustomButton from "../../components/CustomButton/CustomButton";
+import Hero from "../../components/Hero/Hero";
+import Card from "../../components/Card/Card";
 import "./Portfolio.css"; // 2.
 
 // 1. Susiskurti const su tokiu pat kaip failo pavadinimu pvz Porfolio
