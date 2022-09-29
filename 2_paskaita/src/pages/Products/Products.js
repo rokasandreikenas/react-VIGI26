@@ -2,14 +2,25 @@ import { useState } from "react";
 import "./Products.css";
 import CustomButton from "../../components/CustomButton/CustomButton";
 
+// Kai užkraunamas puslapis yra renderinami elementai
+// Kai yra nustatomas setState betkuris, daromas rerenderis
+
 const Products = () => {
   const [counter, setCounter] = useState(1);
   const [quantity, setQuantity] = useState(0);
   const [name, setName] = useState("Rokas");
   const [surname, setSurname] = useState("Andreikenas");
   const [activeDay, setActiveDay] = useState("");
+
   const [todos, setTodos] = useState(["Išmokti React"]);
   const [todoText, setTodoText] = useState("");
+
+  const [colors, setColors] = useState(["red"]);
+  const [colorText, setColorText] = useState("");
+
+  const [boxWidth, setBoxWidth] = useState(50);
+  const [boxHeight, setBoxHeight] = useState(50);
+  const [boxColor, setBoxColor] = useState("black");
 
   const handleClick = () => {
     setCounter(counter + 1);
@@ -23,11 +34,34 @@ const Products = () => {
     }
   };
 
+  const handleAddColor = () => {
+    if (colorText) {
+      setColors((prevColors) => [...prevColors, colorText]); // prideda nauja spalva
+      setColorText(""); // isvalo inputa
+    }
+  };
+
   const handleAddTodo = () => {
     // [...todos, todoText] => ["Išmokti React", todoText] => ["Išmokti React", "Eiti miegoti"]
-    // pridėti tik tada, jeigu todoText yra teigiamas
-    setTodos([...todos, todoText]);
-    setTodoText("");
+    if (todoText) {
+      setTodos([...todos, todoText]); // prideda naują todo
+      setTodoText(""); // išvalo inputo textą
+    }
+  };
+
+  const handleDeleteTodo = (todo) => {
+    setTodos((prevTodos) => prevTodos.filter((prevTodo) => prevTodo !== todo));
+  };
+
+  const handleIncreaseBoxSize = () => {
+    setBoxWidth((prevBoxWidth) => prevBoxWidth + 25);
+    setBoxHeight((prevBoxHeight) => prevBoxHeight + 25);
+
+    if (boxColor === "black") {
+      setBoxColor("grey");
+    } else {
+      setBoxColor("black");
+    }
   };
 
   const weekdays = [
@@ -55,6 +89,7 @@ const Products = () => {
       <h2 onClick={transformSurname}>{surname}</h2>
       {weekdays.map((weekday) => (
         <span
+          key={weekday}
           className={`weekday ${activeDay === weekday ? "active" : ""}`}
           onClick={() => setActiveDay(weekday)}
         >
@@ -73,12 +108,41 @@ const Products = () => {
           Add todo
         </CustomButton>
         <ul>
-          {todos.map((todo) => (
-            <li>
-              {todo} <span>X</span>
+          {/* ISmokti programuoti_0   Eiti miegoti_1 */}
+          {/*  */}
+          {todos.map((todo, index) => (
+            <li key={index}>
+              {todo}
+              <span onClick={() => handleDeleteTodo(todo)}> X</span>
             </li>
           ))}
         </ul>
+        <br />
+        <br />
+        <input
+          type="text"
+          className="todo-input"
+          value={colorText}
+          onChange={(e) => setColorText(e.target.value)}
+        />
+        <CustomButton onClick={handleAddColor}>Add new color</CustomButton>
+        {colors.map((color, index) => (
+          <div
+            key={`${color}_${index}`}
+            style={{ backgroundColor: color, width: 50, height: 50 }}
+          />
+        ))}
+        <br />
+        <br />
+        <button onClick={handleIncreaseBoxSize}>Increase box size</button>
+        <div
+          style={{
+            backgroundColor: boxColor,
+            width: boxWidth,
+            height: boxHeight,
+          }}
+        />
+        <br />
       </div>
     </div>
   );
