@@ -41,7 +41,8 @@ const Products = () => {
     }
   };
 
-  const handleAddTodo = () => {
+  const handleAddTodo = (e) => {
+    e.preventDefault();
     // [...todos, todoText] => ["Išmokti React", todoText] => ["Išmokti React", "Eiti miegoti"]
     if (todoText) {
       setTodos([...todos, todoText]); // prideda naują todo
@@ -98,15 +99,16 @@ const Products = () => {
       ))}
 
       <div className="todo-list">
-        <input
-          type="text"
-          className="todo-input"
-          value={todoText}
-          onChange={(e) => setTodoText(e.target.value)}
-        />
-        <CustomButton variant="contained" onClick={handleAddTodo}>
-          Add todo
-        </CustomButton>
+        {todos.length}
+        <form onSubmit={handleAddTodo}>
+          <input
+            type="text"
+            className="todo-input"
+            value={todoText}
+            onChange={(e) => setTodoText(e.target.value)}
+          />
+          <CustomButton variant="contained">Add todo</CustomButton>
+        </form>
         <ul>
           {/* ISmokti programuoti_0   Eiti miegoti_1 */}
           {/*  */}

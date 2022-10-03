@@ -1,12 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-// import Portfolio from "./pages/Portfolio/Portfolio";
-// import Products from "./pages/Products/Products";
-// import Items from "./pages/Items/Items";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
