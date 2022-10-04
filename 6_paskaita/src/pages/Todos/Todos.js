@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Navbar from "../../components/Navbar/Navbar";
 import "./Todos.css";
 
 const Todos = () => {
@@ -24,23 +25,26 @@ const Todos = () => {
   };
 
   return (
-    <div className="container">
-      {todos.length} Todos
-      <form onSubmit={handleAddTodo}>
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="submit">Add todo</button>
-      </form>
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            <h3>{todo}</h3>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <Navbar />
+      <div className="container">
+        {todos.length} Todos
+        <form onSubmit={handleAddTodo}>
+          <input
+            type="text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button type="submit">Add todo</button>
+        </form>
+        <ul>
+          {todos.map((todo, index) => (
+            <li key={index}>
+              <h3>{todo}</h3>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
