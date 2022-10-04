@@ -1,7 +1,12 @@
 import "./App.css";
+import Todos from "./pages/Todos/Todos";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Todos />
+    </div>
+  );
 }
 
 export default App;
