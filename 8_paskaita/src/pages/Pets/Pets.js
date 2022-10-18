@@ -1,17 +1,63 @@
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import Heading from "../../components/Heading";
+import Card from "../../components/Card";
+import Topbar from "../../components/Topbar";
 import NavigationBar from "../../components/NavigationBar";
 import DefaultLayout from "../../layouts/DefaultLayout";
 
+const Cards = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+
+const CardContainer = styled.div`
+  width: 32%;
+  margin-bottom: 16px;
+`;
+
 const Pets = () => {
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/pets")
+      .then((resp) => resp.json())
+      .then((response) => {
+        setPets(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
-    <div>
+    <>
       <NavigationBar />
       <DefaultLayout>
-        <Heading>Pet List</Heading>
-        <Button />
+        <Topbar>
+          <Heading>Pet List</Heading>
+          <Button>Add Pet</Button>
+        </Topbar>
+        <Cards>
+          {pets.map((pet) => (
+            <CardContainer key={pet.id}>
+              <Card
+                title={pet.name}
+                subtitle={pet.dob}
+                description={pet.client_email}
+              >
+                <Link to={`/health/${pet.id}`}>
+                  <Button>View log</Button>
+                </Link>
+              </Card>
+            </CardContainer>
+          ))}
+        </Cards>
       </DefaultLayout>
-    </div>
+    </>
   );
 };
 

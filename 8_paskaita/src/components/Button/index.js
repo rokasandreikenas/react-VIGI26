@@ -7,14 +7,23 @@ const ContainedButton = styled.button`
   border-radius: 4px;
   color: white;
   font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
-const Outlined = styled(ContainedButton)``;
+const Outlined = styled(ContainedButton)`
+  background-color: #ffffff;
+  color: #eb5d05;
+`;
 
 const Button = ({ children, type }) => {
-  // type === "???" ? button ryzas : button baltas
-  if (type === "???") {
-    return; // baltas
+  if (type === "outlined") {
+    return <Outlined>{children}</Outlined>;
   } else {
     return <ContainedButton>{children}</ContainedButton>;
   }
