@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
@@ -7,6 +7,7 @@ import Card from "../../components/Card";
 import Topbar from "../../components/Topbar";
 import NavigationBar from "../../components/NavigationBar";
 import DefaultLayout from "../../layouts/DefaultLayout";
+import { PetsContext } from "../../contexts/PetsProvider";
 
 const Cards = styled.div`
   display: flex;
@@ -20,18 +21,7 @@ const CardContainer = styled.div`
 `;
 
 const Pets = () => {
-  const [pets, setPets] = useState([]);
-
-  useEffect(() => {
-    fetch("https://glittery-dull-snickerdoodle.glitch.me/v1/pets")
-      .then((resp) => resp.json())
-      .then((response) => {
-        setPets(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  const { pets } = useContext(PetsContext);
 
   return (
     <>

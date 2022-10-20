@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { NightModeContext } from "../../contexts/NightModeProvider";
 
 const Container = styled.div`
   padding: 20px 80px;
@@ -25,14 +27,24 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const RightContainer = styled.div`
+  display: flex;
+`;
+
 const NavigationBar = () => {
+  const { isNightMode, toggleMode } = useContext(NightModeContext);
+
   return (
     <Container>
       <Logo>vetbee</Logo>
-      <nav>
-        <StyledLink to="/">Pets</StyledLink>
-        <StyledLink to="/medications">Medications</StyledLink>
-      </nav>
+      <RightContainer>
+        <nav>
+          <StyledLink to="/">Pets</StyledLink>
+          <StyledLink to="/medications">Medications</StyledLink>
+        </nav>
+        <div onClick={toggleMode}>{isNightMode ? "Night" : "Day"}</div>
+        <div>LT/EN</div>
+      </RightContainer>
     </Container>
   );
 };
