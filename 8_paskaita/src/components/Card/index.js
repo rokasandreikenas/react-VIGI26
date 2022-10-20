@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { NightModeContext } from "../../contexts/NightModeProvider";
 
 const StyledCard = styled.div`
   padding: 16px;
@@ -22,8 +24,10 @@ const Description = styled(Subtitle)`
 `;
 
 const Card = ({ title, subtitle, description, children }) => {
+  const { isNightMode } = useContext(NightModeContext);
+
   return (
-    <StyledCard>
+    <StyledCard style={{ background: isNightMode ? "#3e2801" : "#ffffff" }}>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
       <Description>{description}</Description>

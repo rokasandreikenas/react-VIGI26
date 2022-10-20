@@ -35,15 +35,19 @@ const NavigationBar = () => {
   const { isNightMode, toggleMode } = useContext(NightModeContext);
 
   return (
-    <Container>
+    <Container style={{ background: isNightMode ? "#3e2801" : "#ffffff" }}>
       <Logo>vetbee</Logo>
       <RightContainer>
         <nav>
           <StyledLink to="/">Pets</StyledLink>
           <StyledLink to="/medications">Medications</StyledLink>
         </nav>
-        <div onClick={toggleMode}>{isNightMode ? "Night" : "Day"}</div>
-        <div>LT/EN</div>
+        <div
+          onClick={toggleMode}
+          style={{ color: isNightMode ? "#ffffff" : "#000000" }}
+        >
+          {isNightMode ? "Night" : "Day"}
+        </div>
       </RightContainer>
     </Container>
   );
